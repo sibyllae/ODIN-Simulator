@@ -1,46 +1,50 @@
 # ODIN-Simulator (奧丁：神叛 模擬器)
 
 一個娛樂用的《奧丁：神叛》裝備強化與抽卡模擬器。
-本專案於 2026 年進行了全面現代化重構，採用了極具科技感的暗黑模式、毛玻璃特效 (Glassmorphism) 以及流暢的微動畫，為玩家提供最佳的視覺與互動體驗。
+採用 **Zero Dependencies** 純原生前端技術棧（HTML5、Modern CSS、ES Modules）打造，並遵循現代網頁無障礙（WAI-ARIA）、響應式設計與效能規範。
 
-## 🌟 核心特色 (Features)
+## 🌟 核心功能 (Features)
 
-*   **雙重模擬功能**：
-    *   **🗡️ 裝備強化 (Enhancement)**：模擬武器、防具、披風與飾品的強化成功率，並統計累積消耗與強化次數。
-    *   **🃏 抽卡模擬 (Card Drawing)**：還原遊戲內抽卡機率（白、綠、藍、紫、金），支援批量抽卡並自動計算等值台幣花費。
-*   **頂級美學設計**：全面採用 2026 現代化 UI 設計，包含半透明毛玻璃面板、霓虹點綴與流暢的懸浮回饋。
-*   **極致效能 (Vanilla Stack)**：零前端框架依賴 (Zero Dependencies)！專案完全以純 HTML5、CSS3 與 ES6+ JavaScript (ES Modules) 打造，展現輕量且紮實的底層架構。
+* **🗡️ 裝備強化模擬 (Enhancement)**
+  * 支援武器、防具、披風、一般飾品與商城飾品強化機率模擬（+0 ~ +20）。
+  * **即時理論期望值預覽**：調整道具與目標等級時即時計算理論累積成功率與預期存活件數。
+  * **常用快捷設定**：提供常見等級區間（`+0→+5`、`+0→+7`、`+5→+10`、`+7→+12`）與數量快捷按鈕。
+  * **強化存活漏斗表**：視覺化呈現每階段成功/失敗數與累積存活進度條。
+* **🃏 抽卡模擬 (Card Drawing)**
+  * 還原五階級抽卡機率（白 `72.44%`、綠 `26.24%`、藍 `1.17%`、紫 `0.14%`、金 `0.01%`）。
+  * 提供單抽、11 連抽、十組 11 抽、千抽測試與自訂抽數，自動統計累積鑽石與等值台幣花費，並對比實際與理論出率。
+* **♿ 現代前端標準與無障礙體驗**
+  * WAI-ARIA `tablist` / `tabpanel` 完整鍵盤導覽（支援 `ArrowLeft` / `ArrowRight` / `Home` / `End`）。
+  * XSS 安全的純 DOM 建構（無 `innerHTML` 字串拼接）、表格數值 `tabular-nums` 等寬對齊、`:focus-visible` 鍵盤焦點指示與 `prefers-reduced-motion` 支援。
+  * `@layer` CSS 架構與原生 CSS Nesting。
 
 ## 🚀 如何運行 (How to Run)
 
-由於本專案採用了現代的 ES Modules 架構 (`<script type="module">`)，直接在瀏覽器雙擊打開 HTML 檔案（使用 `file:///` 協議）將會遇到 CORS 安全限制。
+由於本專案使用 ES Modules (`<script type="module">`)，請透過 Local Web Server 啟動（直接以 `file:///` 開啟會受瀏覽器 CORS 限制）：
 
-為了確保所有功能正常運作，**請務必透過 Local Web Server 啟動本專案**。您可以使用以下任何一種方式：
-
-### 1. 使用 VSCode (推薦)
-1. 在 VSCode 中安裝 **Live Server** 擴充功能。
-2. 開啟 `index.html`，點擊右下角的 `Go Live` 按鈕。
+### 1. 使用 VSCode Live Server
+安裝 **Live Server** 擴充功能，開啟 `index.html` 後點擊右下角 `Go Live`。
 
 ### 2. 使用 Node.js
-如果您有安裝 Node.js，可以在終端機執行：
 ```bash
 npx serve
 # 或
 npx http-server
 ```
 
-### 3. 使用 Python
-如果您有安裝 Python，可以在終端機執行：
+## 🧪 執行單元測試 (Tests)
+
+本專案內建 Node.js 原生測試（零外部套件依賴，需 Node.js 18+）：
+
 ```bash
-python -m http.server 8000
+node --test tests/simulator.test.mjs
 ```
-啟動後，開啟瀏覽器前往 `http://localhost:8000` 即可體驗！
 
 ## 🛠️ 技術棧 (Tech Stack)
 
-*   **HTML5** (語意化結構)
-*   **CSS3** (CSS Variables, Flexbox/Grid, Animations, Backdrop-filter)
-*   **JavaScript (ES6+)** (Vanilla JS, ES Modules, 原生 DOM 操作)
+* **HTML5**：單一 `<main>` 語意地標、WAI-ARIA Tabs、原生表單與 `aria-live` 提示
+* **CSS3 (Modern Baseline)**：`@layer` 階層管理、CSS Nesting、CSS Variables、`dvh`、`tabular-nums`、`prefers-reduced-motion`
+* **JavaScript (ES2024+)**：ES Modules、私有欄位 (`#state`)、`Intl.NumberFormat`、職責分離純函式模擬引擎
 
 ---
 *聲明：本專案僅供娛樂與機率測試用途，內部機率資料為模擬數值，實際機率請以遊戲官方公佈為準。*

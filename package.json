@@ -1,0 +1,10 @@
+{
+  "name": "odin-simulator",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "《奧丁：神叛》裝備強化與抽卡機率模擬器",
+  "scripts": {
+    "test": "node --test tests/simulator.test.mjs"
+  }
+}
