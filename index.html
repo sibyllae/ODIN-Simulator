@@ -5,367 +5,804 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#0b0f17" />
-  <title>奧丁：神叛 模擬器 | ODIN Simulator</title>
-  <meta name="description" content="《奧丁：神叛》裝備強化與抽卡機率模擬器，提供即時理論成功率預覽、批量強化追蹤與抽卡花費統計。" />
+  <meta name="theme-color" content="#0c0b0a" />
+  <title>奧丁：神叛 模擬器</title>
+  <meta
+    name="description"
+    content="《奧丁：神叛》機率模擬工具：裝備強化、造型／坐騎／武器形象／符石召喚、4 合 1 合成、古物轉盤、刻印與製作大成功。"
+  />
   <link
     rel="icon"
     type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2360a5fa'/%3E%3Cstop offset='100%25' stop-color='%23fbbf24'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230b0f17'/%3E%3Cpath d='M32 10L50 32L32 54L14 32Z' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fbbf24'/%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230c0b0a'/%3E%3Cpath d='M32 10L50 32L32 54L14 32Z' fill='none' stroke='%23c8a45d' stroke-width='3.5'/%3E%3Cpath d='M32 22L40 32L32 42L24 32Z' fill='%23c8a45d'/%3E%3C/svg%3E"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap"
   />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
   <div class="app-shell">
-    <header class="site-header">
-      <div class="eyebrow">VALHALLA PROBABILITY LAB</div>
-      <h1 class="site-title">奧丁：神叛 模擬器</h1>
-      <p class="site-subtitle">裝備強化存活率模擬 ・ 抽卡機率與花費統計（純娛樂用途）</p>
-      <div class="header-links">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <svg class="brand-mark" aria-hidden="true" viewBox="0 0 32 32" width="28" height="28">
+            <path d="M16 2L28 16L16 30L4 16Z" fill="none" stroke="currentColor" stroke-width="1.75" />
+            <path d="M16 9L22 16L16 23L10 16Z" fill="currentColor" />
+          </svg>
+          <div class="brand-text">
+            <h1 class="site-title">奧丁：神叛</h1>
+            <span class="site-tag">機率模擬工具</span>
+          </div>
+        </div>
+
         <a
           class="repo-link"
           href="https://github.com/sibyllae/ODIN-Simulator"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="前往 GitHub 原始碼倉庫"
         >
-          <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+          <svg aria-hidden="true" viewBox="0 0 16 16" width="15" height="15" fill="currentColor">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
           </svg>
-          <span>GitHub Repo</span>
+          <span>GitHub</span>
         </a>
       </div>
+
+      <nav class="mode-nav" aria-label="模擬器功能切換">
+        <div class="tablist" role="tablist" aria-label="模擬模式">
+          <button
+            type="button"
+            role="tab"
+            id="tab-equipment"
+            class="tab-btn"
+            aria-selected="true"
+            aria-controls="panel-equipment"
+            data-mode="equipment"
+            tabindex="0"
+          >
+            <svg class="tab-svg" aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M14.5 3.5L16.5 5.5L8 14L5 15L6 12L14.5 3.5Z" />
+              <path d="M12.5 5.5L14.5 7.5" />
+            </svg>
+            <span>裝備強化</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-card"
+            class="tab-btn"
+            aria-selected="false"
+            aria-controls="panel-card"
+            data-mode="card"
+            tabindex="-1"
+          >
+            <svg class="tab-svg" aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="4" y="3" width="12" height="14" rx="1.5" />
+              <path d="M10 7L12.5 10L10 13L7.5 10Z" />
+            </svg>
+            <span>卡片召喚</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-synthesis"
+            class="tab-btn"
+            aria-selected="false"
+            aria-controls="panel-synthesis"
+            data-mode="synthesis"
+            tabindex="-1"
+          >
+            <svg class="tab-svg" aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M4 6H9V11H4Z" />
+              <path d="M11 6H16V11H11Z" />
+              <path d="M10 12V16M8 14L10 16L12 14" />
+            </svg>
+            <span>卡片合成</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-artifact"
+            class="tab-btn"
+            aria-selected="false"
+            aria-controls="panel-artifact"
+            data-mode="artifact"
+            tabindex="-1"
+          >
+            <svg class="tab-svg" aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="10" cy="10" r="7" />
+              <circle cx="10" cy="10" r="2.2" />
+              <path d="M10 3V5.5M10 14.5V17M3 10H5.5M14.5 10H17" />
+            </svg>
+            <span>古物轉盤</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-engraving"
+            class="tab-btn"
+            aria-selected="false"
+            aria-controls="panel-engraving"
+            data-mode="engraving"
+            tabindex="-1"
+          >
+            <svg class="tab-svg" aria-hidden="true" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M10 3L16 10L10 17L4 10Z" />
+              <path d="M10 3V17" />
+            </svg>
+            <span>刻印・製作</span>
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <nav class="mode-nav" aria-label="模擬器功能切換">
-      <div class="tablist" role="tablist" aria-label="模擬模式">
-        <button
-          type="button"
-          role="tab"
-          id="tab-equipment"
-          class="tab-btn"
-          aria-selected="true"
-          aria-controls="panel-equipment"
-          data-mode="equipment"
-          tabindex="0"
-        >
-          <span class="tab-icon" aria-hidden="true">⚔️</span>
-          <span>裝備強化模擬</span>
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id="tab-card"
-          class="tab-btn"
-          aria-selected="false"
-          aria-controls="panel-card"
-          data-mode="card"
-          tabindex="-1"
-        >
-          <span class="tab-icon" aria-hidden="true">🃏</span>
-          <span>卡片抽取模擬</span>
-        </button>
-      </div>
-    </nav>
-
     <main id="main-content">
-      <!-- Equipment Enhancement Panel -->
+      <!-- 1. Equipment Enhancement Panel -->
       <section
         id="panel-equipment"
         role="tabpanel"
         aria-labelledby="tab-equipment"
-        class="glass-panel"
+        class="panel-surface"
         tabindex="0"
       >
-        <div class="panel-header">
-          <div class="kpi-strip">
-            <div class="kpi-item">
-              <span class="kpi-label">累積投入件數</span>
-              <strong id="equip-total-consumed" class="kpi-value">0</strong>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-label">累積目標達標</span>
-              <strong id="equip-total-reached" class="kpi-value text-success">0</strong>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-label">最近模擬結果</span>
-              <strong id="equip-last-outcome" class="kpi-value text-accent">尚未模擬</strong>
-            </div>
-          </div>
-          <button type="button" id="reset-equip-btn" class="btn btn-outline">重置紀錄</button>
-        </div>
-
-        <form id="equip-form" class="sim-form" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label for="equip-select">道具類型</label>
-              <select id="equip-select" name="equipType">
-                <option value="arms" selected>武器</option>
-                <option value="equip">防具 / 裝備</option>
-                <option value="cloak">披風</option>
-                <option value="accessory">一般飾品</option>
-                <option value="blackAccessory">商城飾品</option>
-              </select>
+        <div class="workbench">
+          <aside class="workbench-controls">
+            <div class="section-bar">
+              <h2 class="section-heading">強化參數設定</h2>
             </div>
 
-            <div class="field">
-              <label for="now-lv-select">目前等級</label>
-              <select id="now-lv-select" name="nowLv">
-                <option value="0" selected>+0</option>
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-                <option value="4">+4</option>
-                <option value="5">+5</option>
-                <option value="6">+6</option>
-                <option value="7">+7</option>
-                <option value="8">+8</option>
-                <option value="9">+9</option>
-                <option value="10">+10</option>
-                <option value="11">+11</option>
-                <option value="12">+12</option>
-                <option value="13">+13</option>
-                <option value="14">+14</option>
-                <option value="15">+15</option>
-                <option value="16">+16</option>
-                <option value="17">+17</option>
-                <option value="18">+18</option>
-                <option value="19">+19</option>
-              </select>
+            <form id="equip-form" class="sim-form" novalidate>
+              <div class="field">
+                <label for="equip-select">道具類型</label>
+                <select id="equip-select" name="equipType">
+                  <option value="arms" selected>武器</option>
+                  <option value="equip">防具 / 裝備</option>
+                  <option value="cloak">披風</option>
+                  <option value="accessory">一般飾品（含紋章）</option>
+                  <option value="blackAccessory">商城飾品</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="equip-stone-select">強化石類型</label>
+                <select id="equip-stone-select" name="stoneType">
+                  <option value="normal" selected>一般強化石 (+1)</option>
+                  <option value="blessed">伊瓦爾第強化石 (20% 跳 +2)</option>
+                </select>
+              </div>
+
+              <div class="field-pair">
+                <div class="field">
+                  <label for="now-lv-select">目前等級</label>
+                  <select id="now-lv-select" name="nowLv">
+                    <option value="0" selected>+0</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7">+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                    <option value="10">+10</option>
+                    <option value="11">+11</option>
+                    <option value="12">+12</option>
+                    <option value="13">+13</option>
+                    <option value="14">+14</option>
+                    <option value="15">+15</option>
+                    <option value="16">+16</option>
+                    <option value="17">+17</option>
+                    <option value="18">+18</option>
+                    <option value="19">+19</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="target-lv-select">目標等級</label>
+                  <select id="target-lv-select" name="targetLv">
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7" selected>+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                    <option value="10">+10</option>
+                    <option value="11">+11</option>
+                    <option value="12">+12</option>
+                    <option value="13">+13</option>
+                    <option value="14">+14</option>
+                    <option value="15">+15</option>
+                    <option value="16">+16</option>
+                    <option value="17">+17</option>
+                    <option value="18">+18</option>
+                    <option value="19">+19</option>
+                    <option value="20">+20</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="preset-block" aria-label="等級區間快速設定">
+                <span class="preset-label">常用區間</span>
+                <div class="preset-group">
+                  <button type="button" class="chip-btn" data-lv-preset="0-5">+0 → +5</button>
+                  <button type="button" class="chip-btn" data-lv-preset="0-7">+0 → +7</button>
+                  <button type="button" class="chip-btn" data-lv-preset="5-10">+5 → +10</button>
+                  <button type="button" class="chip-btn" data-lv-preset="7-12">+7 → +12</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="equip-count-input">投入數量 (1 ~ 100,000)</label>
+                <input
+                  id="equip-count-input"
+                  name="count"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  value="100"
+                  placeholder="輸入件數"
+                  required
+                />
+                <div class="preset-group mt-sm" aria-label="投入數量快速設定">
+                  <button type="button" class="chip-btn" data-equip-qty="1">1</button>
+                  <button type="button" class="chip-btn" data-equip-qty="10">10</button>
+                  <button type="button" class="chip-btn" data-equip-qty="50">50</button>
+                  <button type="button" class="chip-btn" data-equip-qty="100">100</button>
+                  <button type="button" class="chip-btn" data-equip-qty="1000">1,000</button>
+                </div>
+              </div>
+
+              <div class="preview-note" aria-live="polite">
+                <p id="equip-preview-text" class="preview-text"></p>
+              </div>
+
+              <div id="equip-error" class="form-alert" role="alert" hidden></div>
+
+              <button type="submit" id="start-equip-btn" class="btn btn-primary btn-full">
+                開始強化模擬
+              </button>
+            </form>
+          </aside>
+
+          <div class="workbench-output">
+            <div class="stats-bar">
+              <div class="kpi-strip">
+                <div class="kpi-item">
+                  <span class="kpi-label">累積投入</span>
+                  <strong id="equip-total-consumed" class="kpi-value">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">累積達標</span>
+                  <strong id="equip-total-reached" class="kpi-value text-success">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">最近結果</span>
+                  <strong id="equip-last-outcome" class="kpi-value text-gold">尚未模擬</strong>
+                </div>
+              </div>
+              <button type="button" id="reset-equip-btn" class="btn btn-ghost">重置</button>
             </div>
 
-            <div class="field">
-              <label for="target-lv-select">目標等級</label>
-              <select id="target-lv-select" name="targetLv">
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-                <option value="4">+4</option>
-                <option value="5">+5</option>
-                <option value="6">+6</option>
-                <option value="7" selected>+7</option>
-                <option value="8">+8</option>
-                <option value="9">+9</option>
-                <option value="10">+10</option>
-                <option value="11">+11</option>
-                <option value="12">+12</option>
-                <option value="13">+13</option>
-                <option value="14">+14</option>
-                <option value="15">+15</option>
-                <option value="16">+16</option>
-                <option value="17">+17</option>
-                <option value="18">+18</option>
-                <option value="19">+19</option>
-                <option value="20">+20</option>
-              </select>
+            <div id="equip-empty-state" class="empty-state">
+              <p class="empty-title">尚未執行強化模擬</p>
+              <p class="empty-desc">在左側選擇裝備、強化石與目標等級後，即可查看各階成功數與存活率漏斗。</p>
             </div>
 
-            <div class="field">
-              <label for="equip-count-input">投入數量 (1 ~ 100,000)</label>
-              <input
-                id="equip-count-input"
-                name="count"
-                type="number"
-                inputmode="numeric"
-                min="1"
-                max="100000"
-                step="1"
-                value="100"
-                placeholder="例如：100"
-                required
-              />
+            <div id="equip-results-wrap" hidden>
+              <div id="equip-outcome-banner" class="outcome-banner" aria-live="polite"></div>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">強化階段</th>
+                      <th scope="col">單階機率</th>
+                      <th scope="col">成功</th>
+                      <th scope="col">失敗</th>
+                      <th scope="col">累積存活率</th>
+                    </tr>
+                  </thead>
+                  <tbody id="equip-result-tbody"></tbody>
+                </table>
+              </div>
             </div>
-          </div>
-
-          <div class="presets-bar">
-            <div class="preset-group" aria-label="等級區間快速設定">
-              <span class="preset-label">常用區間：</span>
-              <button type="button" class="chip-btn" data-lv-preset="0-5">+0 → +5</button>
-              <button type="button" class="chip-btn" data-lv-preset="0-7">+0 → +7</button>
-              <button type="button" class="chip-btn" data-lv-preset="5-10">+5 → +10</button>
-              <button type="button" class="chip-btn" data-lv-preset="7-12">+7 → +12</button>
-            </div>
-            <div class="preset-group" aria-label="投入數量快速設定">
-              <span class="preset-label">數量：</span>
-              <button type="button" class="chip-btn" data-equip-qty="1">1</button>
-              <button type="button" class="chip-btn" data-equip-qty="10">10</button>
-              <button type="button" class="chip-btn" data-equip-qty="50">50</button>
-              <button type="button" class="chip-btn" data-equip-qty="100">100</button>
-              <button type="button" class="chip-btn" data-equip-qty="1000">1,000</button>
-            </div>
-          </div>
-
-          <div class="preview-strip" aria-live="polite">
-            <span class="preview-badge">理論期望值</span>
-            <p id="equip-preview-text" class="preview-text"></p>
-          </div>
-
-          <div id="equip-error" class="form-alert" role="alert" hidden></div>
-
-          <div class="submit-row">
-            <button type="submit" id="start-equip-btn" class="btn btn-primary btn-lg">
-              開始強化模擬
-            </button>
-          </div>
-        </form>
-
-        <div id="equip-empty-state" class="empty-state">
-          <p class="empty-title">準備好進行批量強化了嗎？</p>
-          <p class="empty-desc">調整上方道具類型、目標等級與數量後，點擊「開始強化模擬」查看各階段存活漏斗。</p>
-        </div>
-
-        <div id="equip-results-wrap" hidden>
-          <div id="equip-outcome-banner" class="outcome-banner" aria-live="polite"></div>
-          <div class="table-container">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th scope="col">強化階段</th>
-                  <th scope="col">單階機率</th>
-                  <th scope="col">成功</th>
-                  <th scope="col">失敗</th>
-                  <th scope="col">累積存活率</th>
-                </tr>
-              </thead>
-              <tbody id="equip-result-tbody"></tbody>
-            </table>
           </div>
         </div>
       </section>
 
-      <!-- Card Draw Panel -->
+      <!-- 2. Card Draw Panel -->
       <section
         id="panel-card"
         role="tabpanel"
         aria-labelledby="tab-card"
-        class="glass-panel"
+        class="panel-surface"
         tabindex="0"
         hidden
       >
-        <div class="panel-header">
+        <div class="workbench">
+          <aside class="workbench-controls">
+            <div class="section-bar">
+              <h2 class="section-heading">召喚卡池與抽數</h2>
+            </div>
+
+            <form id="card-form" class="sim-form" novalidate>
+              <div class="field">
+                <label for="card-pool-select">召喚項目</label>
+                <select id="card-pool-select" name="poolId">
+                  <option value="avatar" selected>造型召喚 (Avatar)</option>
+                  <option value="mount">坐騎召喚 (Mount)</option>
+                  <option value="weaponSkin">武器形象召喚 (Weapon)</option>
+                  <option value="rune">符石 / 庇佑石召喚</option>
+                </select>
+                <p id="card-pool-desc" class="field-hint"></p>
+              </div>
+
+              <div class="preset-block" aria-label="快速抽卡操作">
+                <span class="preset-label">快速召喚</span>
+                <div class="quick-draw-grid">
+                  <button type="button" class="btn btn-secondary" data-quick-draw="1">單抽 (1)</button>
+                  <button type="button" class="btn btn-secondary" data-quick-draw="11">11 連抽</button>
+                  <button type="button" class="btn btn-secondary" data-quick-draw="110">十組 (110)</button>
+                  <button type="button" class="btn btn-secondary" data-quick-draw="1000">千抽 (1,000)</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="card-count-input">自訂抽數 (1 ~ 100,000)</label>
+                <input
+                  id="card-count-input"
+                  name="count"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  value="110"
+                  placeholder="輸入抽卡數量"
+                  required
+                />
+              </div>
+
+              <div id="card-error" class="form-alert" role="alert" hidden></div>
+
+              <button type="submit" id="start-card-btn" class="btn btn-primary btn-full">
+                開始自訂抽卡
+              </button>
+
+              <button type="button" id="send-to-synth-btn" class="btn btn-secondary btn-full" disabled>
+                帶入現有庫存去合成 →
+              </button>
+            </form>
+          </aside>
+
+          <div class="workbench-output">
+            <div class="stats-bar">
+              <div class="kpi-strip">
+                <div class="kpi-item">
+                  <span class="kpi-label">累積抽數</span>
+                  <strong id="card-total-draws" class="kpi-value">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">估算鑽石</span>
+                  <strong id="card-total-diamonds" class="kpi-value text-blue">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">換算台幣</span>
+                  <strong id="card-total-twd" class="kpi-value text-gold">NT$ 0</strong>
+                </div>
+              </div>
+              <button type="button" id="reset-card-btn" class="btn btn-ghost">重置</button>
+            </div>
+
+            <div class="rarity-grid" aria-label="各階級卡片累積統計">
+              <div class="rarity-card rarity-white">
+                <div class="rarity-head">
+                  <span class="rarity-name">白</span>
+                  <span class="rarity-rate">70.95%</span>
+                </div>
+                <strong id="summary-white" class="rarity-count">0</strong>
+                <span id="actual-white" class="rarity-actual">實際 0.00%</span>
+              </div>
+              <div class="rarity-card rarity-green">
+                <div class="rarity-head">
+                  <span class="rarity-name">綠</span>
+                  <span class="rarity-rate">27.56%</span>
+                </div>
+                <strong id="summary-green" class="rarity-count">0</strong>
+                <span id="actual-green" class="rarity-actual">實際 0.00%</span>
+              </div>
+              <div class="rarity-card rarity-blue">
+                <div class="rarity-head">
+                  <span class="rarity-name">藍</span>
+                  <span class="rarity-rate">1.32%</span>
+                </div>
+                <strong id="summary-blue" class="rarity-count">0</strong>
+                <span id="actual-blue" class="rarity-actual">實際 0.00%</span>
+              </div>
+              <div class="rarity-card rarity-purple">
+                <div class="rarity-head">
+                  <span class="rarity-name">紫</span>
+                  <span class="rarity-rate">0.16%</span>
+                </div>
+                <strong id="summary-purple" class="rarity-count">0</strong>
+                <span id="actual-purple" class="rarity-actual">實際 0.00%</span>
+              </div>
+              <div class="rarity-card rarity-gold">
+                <div class="rarity-head">
+                  <span class="rarity-name">金</span>
+                  <span class="rarity-rate">0.01%</span>
+                </div>
+                <strong id="summary-gold" class="rarity-count">0</strong>
+                <span id="actual-gold" class="rarity-actual">實際 0.00%</span>
+              </div>
+            </div>
+
+            <div id="card-empty-state" class="empty-state">
+              <p class="empty-title">尚未進行召喚</p>
+              <p class="empty-desc">參考匯率：11 抽 = 2,100 鑽石；30,580 鑽石 ≈ NT$ 10,000。</p>
+            </div>
+
+            <div id="card-results-wrap" class="table-container" hidden>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">批次</th>
+                    <th scope="col">項目</th>
+                    <th scope="col">抽數</th>
+                    <th scope="col">白</th>
+                    <th scope="col">綠</th>
+                    <th scope="col">藍</th>
+                    <th scope="col">紫</th>
+                    <th scope="col">金</th>
+                    <th scope="col">NT$</th>
+                  </tr>
+                </thead>
+                <tbody id="card-result-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Card Synthesis & Rune Upgrade Panel -->
+      <section
+        id="panel-synthesis"
+        role="tabpanel"
+        aria-labelledby="tab-synthesis"
+        class="panel-surface"
+        tabindex="0"
+        hidden
+      >
+        <div class="workbench">
+          <aside class="workbench-controls">
+            <div class="section-bar">
+              <h2 class="section-heading">合成與升階設定</h2>
+            </div>
+
+            <form id="synth-form" class="sim-form" novalidate>
+              <div class="field">
+                <label for="synth-category-select">合成 / 升階類型</label>
+                <select id="synth-category-select" name="category">
+                  <option value="avatar" selected>造型 4 合 1 合成</option>
+                  <option value="mount">坐騎 4 合 1 合成</option>
+                  <option value="weaponSkin">武器形象 4 合 1 合成</option>
+                  <option value="warding">庇佑石 4 合 1 合成</option>
+                  <option value="runeUpgrade">符石內建升階（單顆）</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="synth-tier-select">目標階級</label>
+                <select id="synth-tier-select" name="tierId">
+                  <option value="white-green">白 → 綠 (30%)</option>
+                  <option value="green-blue">綠 → 藍 (21%)</option>
+                  <option value="blue-purple" selected>藍 → 紫・英雄 (18%)</option>
+                  <option value="purple-gold">紫 → 金・傳說 (16%)</option>
+                  <option value="gold-red">金 → 紅・神話 (14%)</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="synth-attempts-input">嘗試次數 (1 ~ 100,000)</label>
+                <input
+                  id="synth-attempts-input"
+                  name="attempts"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  value="15"
+                  placeholder="輸入次數"
+                  required
+                />
+                <div class="preset-group mt-sm" aria-label="合成次數快速設定">
+                  <button type="button" class="chip-btn" data-synth-qty="1">1</button>
+                  <button type="button" class="chip-btn" data-synth-qty="5">5</button>
+                  <button type="button" class="chip-btn" data-synth-qty="15">15 (保底)</button>
+                  <button type="button" class="chip-btn" data-synth-qty="50">50</button>
+                  <button type="button" class="chip-btn" data-synth-qty="100">100</button>
+                </div>
+              </div>
+
+              <label class="checkbox-toggle">
+                <input type="checkbox" id="synth-pity-checkbox" checked />
+                <span id="synth-pity-label">啟用 15 次失敗保底（每失敗 15 次必送 1 張目標卡）</span>
+              </label>
+
+              <div class="preview-note" aria-live="polite">
+                <p id="synth-preview-text" class="preview-text"></p>
+              </div>
+
+              <div id="synth-error" class="form-alert" role="alert" hidden></div>
+
+              <button type="submit" id="start-synth-btn" class="btn btn-primary btn-full">
+                開始單階模擬
+              </button>
+
+              <button type="button" id="cascade-from-card-btn" class="btn btn-secondary btn-full">
+                用抽卡庫存連鎖合成 (白→紅神話)
+              </button>
+            </form>
+          </aside>
+
+          <div class="workbench-output">
+            <div class="stats-bar">
+              <div class="kpi-strip">
+                <div class="kpi-item">
+                  <span class="kpi-label">累積嘗試</span>
+                  <strong id="synth-total-attempts" class="kpi-value">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">累積成功</span>
+                  <strong id="synth-total-success" class="kpi-value text-success">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">觸發保底</span>
+                  <strong id="synth-total-pity" class="kpi-value text-gold">0</strong>
+                </div>
+              </div>
+              <button type="button" id="reset-synth-btn" class="btn btn-ghost">重置</button>
+            </div>
+
+            <div id="synth-empty-state" class="empty-state">
+              <p class="empty-title">尚未執行合成模擬</p>
+              <p class="empty-desc">4 合 1 合成失敗會消耗全部 4 張素材（不返還同階卡），僅累積保底次數；符石內建升階則採 30%/16%/13%/11%/10% 機率。</p>
+            </div>
+
+            <div id="synth-results-wrap" hidden>
+              <div id="synth-outcome-banner" class="outcome-banner" aria-live="polite"></div>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">升階項目</th>
+                      <th scope="col">機率</th>
+                      <th scope="col">次數</th>
+                      <th scope="col">素材</th>
+                      <th scope="col">直接成功</th>
+                      <th scope="col">保底</th>
+                      <th scope="col">總產出</th>
+                    </tr>
+                  </thead>
+                  <tbody id="synth-result-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Artifact 10-Slot Roulette Panel -->
+      <section
+        id="panel-artifact"
+        role="tabpanel"
+        aria-labelledby="tab-artifact"
+        class="panel-surface"
+        tabindex="0"
+        hidden
+      >
+        <div class="stats-bar">
           <div class="kpi-strip">
             <div class="kpi-item">
-              <span class="kpi-label">累積抽卡次數</span>
-              <strong id="card-total-draws" class="kpi-value">0</strong>
+              <span class="kpi-label">累積抽獎</span>
+              <strong id="artifact-total-draws" class="kpi-value">0</strong>
             </div>
             <div class="kpi-item">
-              <span class="kpi-label">估算消耗鑽石</span>
-              <strong id="card-total-diamonds" class="kpi-value text-blue">0</strong>
+              <span class="kpi-label">目標命中</span>
+              <strong id="artifact-total-hits" class="kpi-value text-success">0</strong>
             </div>
             <div class="kpi-item">
-              <span class="kpi-label">累積花費台幣</span>
-              <strong id="card-total-twd" class="kpi-value text-gold">NT$ 0</strong>
+              <span class="kpi-label">實際命中率</span>
+              <strong id="artifact-actual-rate" class="kpi-value text-gold">0.00%</strong>
             </div>
           </div>
-          <button type="button" id="reset-card-btn" class="btn btn-outline">重置紀錄</button>
+          <button type="button" id="reset-artifact-btn" class="btn btn-ghost">重置</button>
         </div>
 
-        <div class="rarity-grid" aria-label="各階級卡片累積統計">
-          <div class="rarity-card rarity-white">
-            <div class="rarity-head">
-              <span class="rarity-name">白卡</span>
-              <span class="rarity-rate">72.44%</span>
-            </div>
-            <strong id="summary-white" class="rarity-count">0</strong>
-            <span id="actual-white" class="rarity-actual">實際 0.00%</span>
-          </div>
-          <div class="rarity-card rarity-green">
-            <div class="rarity-head">
-              <span class="rarity-name">綠卡</span>
-              <span class="rarity-rate">26.24%</span>
-            </div>
-            <strong id="summary-green" class="rarity-count">0</strong>
-            <span id="actual-green" class="rarity-actual">實際 0.00%</span>
-          </div>
-          <div class="rarity-card rarity-blue">
-            <div class="rarity-head">
-              <span class="rarity-name">藍卡</span>
-              <span class="rarity-rate">1.17%</span>
-            </div>
-            <strong id="summary-blue" class="rarity-count">0</strong>
-            <span id="actual-blue" class="rarity-actual">實際 0.00%</span>
-          </div>
-          <div class="rarity-card rarity-purple">
-            <div class="rarity-head">
-              <span class="rarity-name">紫卡</span>
-              <span class="rarity-rate">0.14%</span>
-            </div>
-            <strong id="summary-purple" class="rarity-count">0</strong>
-            <span id="actual-purple" class="rarity-actual">實際 0.00%</span>
-          </div>
-          <div class="rarity-card rarity-gold">
-            <div class="rarity-head">
-              <span class="rarity-name">金卡</span>
-              <span class="rarity-rate">0.01%</span>
-            </div>
-            <strong id="summary-gold" class="rarity-count">0</strong>
-            <span id="actual-gold" class="rarity-actual">實際 0.00%</span>
+        <div class="artifact-toolbar">
+          <p class="field-hint">點擊盤面欄位可多選目標（預設鎖定第 2 格 35%）：</p>
+          <div class="preset-group" aria-label="古物多選策略預設">
+            <button type="button" class="chip-btn" data-artifact-pick="1">單選 #2 (35%)</button>
+            <button type="button" class="chip-btn" data-artifact-pick="1,2">2-Pick #2+#3 (52.5%)</button>
+            <button type="button" class="chip-btn" data-artifact-pick="1,2,3">3-Pick #2+#3+#4 (70%)</button>
           </div>
         </div>
 
-        <form id="card-form" class="sim-form" novalidate>
-          <div class="quick-draw-bar" aria-label="快速抽卡操作">
-            <button type="button" class="btn btn-secondary" data-quick-draw="1">單抽 (1)</button>
-            <button type="button" class="btn btn-secondary" data-quick-draw="11">11 連抽</button>
-            <button type="button" class="btn btn-secondary" data-quick-draw="110">十組 11 抽 (110)</button>
-            <button type="button" class="btn btn-secondary" data-quick-draw="1000">千抽測試 (1,000)</button>
+        <div id="artifact-board" class="artifact-board" role="group" aria-label="古物 10 格轉盤欄位選擇"></div>
+
+        <form id="artifact-form" class="artifact-controls" novalidate>
+          <div class="preview-note" aria-live="polite">
+            <p id="artifact-preview-text" class="preview-text"></p>
           </div>
 
-          <div class="custom-draw-row">
-            <div class="field field-inline">
-              <label for="card-count-input">自訂抽數 (1 ~ 100,000)</label>
+          <div class="artifact-action-row">
+            <div class="preset-group" aria-label="古物快速抽獎">
+              <button type="button" class="btn btn-secondary" data-artifact-draw="1">抽 1 次</button>
+              <button type="button" class="btn btn-secondary" data-artifact-draw="10">10 次</button>
+              <button type="button" class="btn btn-secondary" data-artifact-draw="50">50 次</button>
+              <button type="button" class="btn btn-secondary" data-artifact-draw="100">100 次</button>
+            </div>
+
+            <div class="inline-submit">
+              <label class="sr-only" for="artifact-count-input">自訂抽數</label>
               <input
-                id="card-count-input"
-                name="count"
+                id="artifact-count-input"
+                name="draws"
                 type="number"
                 inputmode="numeric"
                 min="1"
                 max="100000"
                 step="1"
-                value="110"
-                placeholder="輸入抽卡數量"
+                value="10"
                 required
               />
+              <button type="submit" id="start-artifact-btn" class="btn btn-primary">開始抽獎</button>
             </div>
-            <button type="submit" id="start-card-btn" class="btn btn-primary btn-lg">開始抽卡</button>
           </div>
 
-          <div id="card-error" class="form-alert" role="alert" hidden></div>
+          <div id="artifact-error" class="form-alert" role="alert" hidden></div>
         </form>
 
-        <div id="card-empty-state" class="empty-state">
-          <p class="empty-title">點擊上方快速抽卡或輸入自訂抽數</p>
-          <p class="empty-desc">匯率參考：11 抽 = 2,100 鑽石；30,580 鑽石 ≈ NT$ 10,000。</p>
-        </div>
+        <div id="artifact-outcome-banner" class="outcome-banner" aria-live="polite" hidden></div>
+      </section>
 
-        <div id="card-results-wrap" class="table-container" hidden>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th scope="col">批次</th>
-                <th scope="col">抽數</th>
-                <th scope="col">白</th>
-                <th scope="col">綠</th>
-                <th scope="col">藍</th>
-                <th scope="col">紫</th>
-                <th scope="col">金</th>
-                <th scope="col">花費 (NT$)</th>
-              </tr>
-            </thead>
-            <tbody id="card-result-tbody"></tbody>
-          </table>
+      <!-- 5. Engraving & Crafting Panel -->
+      <section
+        id="panel-engraving"
+        role="tabpanel"
+        aria-labelledby="tab-engraving"
+        class="panel-surface"
+        tabindex="0"
+        hidden
+      >
+        <div class="dual-grid">
+          <!-- Part A: Engraving -->
+          <div class="subpanel-card">
+            <div class="stats-bar">
+              <div class="kpi-strip">
+                <div class="kpi-item">
+                  <span class="kpi-label">黃金印章</span>
+                  <strong id="engrave-total-seals" class="kpi-value">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">同詞條</span>
+                  <strong id="engrave-total-matches" class="kpi-value text-success">0</strong>
+                </div>
+                <div class="kpi-item">
+                  <span class="kpi-label">全紫+ / 全金</span>
+                  <strong id="engrave-total-high" class="kpi-value text-gold">0 / 0</strong>
+                </div>
+              </div>
+              <button type="button" id="reset-engrave-btn" class="btn btn-ghost">重置</button>
+            </div>
+
+            <h2 class="section-heading">刻印系統（黃金印章 3 槽配對）</h2>
+
+            <form id="engrave-form" class="sim-form" novalidate>
+              <div class="field">
+                <label for="engrave-stage-select">刻印階段</label>
+                <select id="engrave-stage-select" name="stage">
+                  <option value="1" selected>第 1 階段（同詞條 8%｜金 15%）</option>
+                  <option value="2">第 2 階段（同詞條 7%｜金 15%）</option>
+                  <option value="3">第 3 階段（同詞條 5%｜金 12%）</option>
+                  <option value="4">第 4 階段（同詞條 2%｜金 7%）</option>
+                  <option value="5">第 5 階段（同詞條 2%｜金 7%）</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="engrave-count-input">投入黃金印章數 (1 ~ 100,000)</label>
+                <input
+                  id="engrave-count-input"
+                  name="attempts"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  value="50"
+                  required
+                />
+                <div class="preset-group mt-sm" aria-label="黃金印章快速數量">
+                  <button type="button" class="chip-btn" data-engrave-qty="1">1</button>
+                  <button type="button" class="chip-btn" data-engrave-qty="10">10</button>
+                  <button type="button" class="chip-btn" data-engrave-qty="50">50</button>
+                  <button type="button" class="chip-btn" data-engrave-qty="100">100</button>
+                  <button type="button" class="chip-btn" data-engrave-qty="1000">1,000</button>
+                </div>
+              </div>
+
+              <div class="preview-note" aria-live="polite">
+                <p id="engrave-preview-text" class="preview-text"></p>
+              </div>
+
+              <div id="engrave-error" class="form-alert" role="alert" hidden></div>
+
+              <button type="submit" id="start-engrave-btn" class="btn btn-primary btn-full">洗鍊刻印</button>
+            </form>
+
+            <div id="engrave-result-box" class="engrave-result-box" hidden>
+              <div id="engrave-outcome-banner" class="outcome-banner" aria-live="polite"></div>
+              <div id="engrave-slots-row" class="engrave-slots-row" aria-label="最後一次刻印槽位顏色結果"></div>
+            </div>
+          </div>
+
+          <!-- Part B: Crafting Critical Success -->
+          <div class="subpanel-card">
+            <h2 class="section-heading">製作大成功（成功後 15% 可交易）</h2>
+            <p class="field-hint mb-md">模擬製作裝備圖樣、精隨或技能書的基礎成功率，並依《奧丁》固定 15% 判定可交易大成功產物。</p>
+
+            <form id="craft-form" class="sim-form" novalidate>
+              <div class="field">
+                <label for="craft-preset-select">製作類型</label>
+                <select id="craft-preset-select" name="presetId">
+                  <option value="gearPattern" selected>一般裝備圖樣（成功 20% → 大成功 15%）</option>
+                  <option value="essence">精隨 / 靈魂製作（成功 12% → 大成功 15%）</option>
+                  <option value="skillMaterial">高階材料 / 技能書（成功 30% → 大成功 15%）</option>
+                  <option value="guaranteed">必成製作（成功 100% → 大成功 15%）</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="craft-count-input">製作次數 (1 ~ 100,000)</label>
+                <input
+                  id="craft-count-input"
+                  name="attempts"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  value="20"
+                  required
+                />
+              </div>
+
+              <div id="craft-error" class="form-alert" role="alert" hidden></div>
+
+              <button type="submit" id="start-craft-btn" class="btn btn-primary btn-full">開始製作模擬</button>
+            </form>
+
+            <div id="craft-outcome-banner" class="outcome-banner" aria-live="polite" hidden></div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>聲明：本工具僅供娛樂與機率模擬測試，內部機率與匯率為模擬推算值，實際遊戲機制請以官方公告為準。</p>
+      <p>僅供娛樂與機率測試，內部機率與匯率為參考推算值，實際機制請以官方公告為準。</p>
     </footer>
   </div>
 
