@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sibyllae.github.io/ODIN-Simulator/sitemap.xml

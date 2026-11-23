@@ -1,0 +1,10 @@
+{
+  "name": "奧丁：神叛 機率模擬器",
+  "short_name": "奧丁模擬器",
+  "description": "《奧丁：神叛》裝備強化、四大卡池召喚、4 合 1 合成、古物轉盤、刻印與製作大成功機率模擬工具。",
+  "lang": "zh-TW",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0c0b0a",
+  "theme_color": "#0c0b0a"
+}

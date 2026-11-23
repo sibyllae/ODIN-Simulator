@@ -6,11 +6,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#0c0b0a" />
-  <title>奧丁：神叛 模擬器</title>
+  <title>奧丁：神叛 模擬器｜衝裝、抽卡、4合1合成、古物轉盤與刻印機率</title>
   <meta
     name="description"
-    content="《奧丁：神叛》機率模擬工具：裝備強化、造型／坐騎／武器形象／符石召喚、4 合 1 合成、古物轉盤、刻印與製作大成功。"
+    content="免費線上《奧丁：神叛》全系統機率模擬器：武器防具衝裝與伊瓦爾第跳階、造型／坐騎／武器形象／符石召喚、4合1合成與15次保底、10格古物轉盤、黃金印章刻印與15%製作大成功。"
   />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="sibyllae" />
+  <link rel="canonical" href="https://sibyllae.github.io/ODIN-Simulator/" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:site_name" content="奧丁：神叛 模擬器" />
+  <meta property="og:url" content="https://sibyllae.github.io/ODIN-Simulator/" />
+  <meta property="og:title" content="奧丁：神叛 模擬器｜衝裝、抽卡、4合1合成、古物轉盤與刻印機率" />
+  <meta
+    property="og:description"
+    content="免費《奧丁：神叛》機率模擬工具：支援裝備強化（含伊瓦爾第跳+2）、造型／坐騎／武器形象／符石抽卡、4合1合成保底、10格古物轉盤、刻印與15%製作大成功。"
+  />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="奧丁：神叛 模擬器｜衝裝・抽卡・合成・古物・刻印" />
+  <meta
+    name="twitter:description"
+    content="免安裝線上《奧丁：神叛》機率模擬器，實測衝裝存活率、鑽石抽卡花費、4合1升階保底與古物轉盤策略。"
+  />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "奧丁：神叛 模擬器",
+          "alternateName": "ODIN: Valhalla Rising Probability Simulator",
+          "url": "https://sibyllae.github.io/ODIN-Simulator/",
+          "inLanguage": "zh-TW",
+          "applicationCategory": "GameApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TWD"
+          },
+          "description": "《奧丁：神叛》裝備強化、造型／坐騎／武器形象／符石召喚、4合1卡片合成、古物10格轉盤、黃金印章刻印與15%製作大成功機率模擬工具。",
+          "featureList": [
+            "裝備強化模擬與伊瓦爾第祝福石20%跳階計算",
+            "造型、坐騎、武器形象、符石與庇佑石鑽石召喚模擬",
+            "4合1卡片合成升階與15次失敗保底模擬",
+            "符石內建升階機率模擬",
+            "古物10格盤面多選Pick抽獎模擬",
+            "黃金印章刻印1~5階配對與15%製作大成功模擬"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "《奧丁：神叛》鑽石抽卡（造型／坐騎／武器形象／符石）的參考機率是多少？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "本模擬器採用公開鑽石召喚基準：白色（一般）約 70.95%、綠色（高級）27.56%、藍色（稀有）1.32%、紫色（英雄）0.16%、金色（傳說）0.01%，11 連抽換算 2,100 鑽石。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "4 合 1 卡片合成失敗會退還卡片嗎？保底如何計算？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "在《奧丁：神叛》中 4 合 1 合成失敗會消耗全部 4 張素材且不返還同階卡片，僅累積失敗次數；模擬器支援啟用每失敗 15 次必送 1 張目標階級的保底設定。升階參考機率為白→綠 30%、綠→藍 21%、藍→紫 18%、紫→金 16%、金→紅神話 14%。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "伊瓦爾第強化石（祝福石）的跳 +2 機率怎麼算？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "伊瓦爾第強化石採兩階段獨立判定：先判定該階段基本強化是否成功，成功後再以 20% 機率直接跳升 2 階（+2），否則正常 +1。本模擬器使用動態規劃計算包含跳階的精確理論存活率。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "古物抽獎盤為什麼常鎖定第 2 格與多選 Pick？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "古物 10 格盤面中第 2 格基礎權重最高（約 35%），第 3、4 格次之（各約 17.5%）。搭配多選策略（如 2-Pick 52.5%、3-Pick 70%）可大幅提高目標欄位命中率。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
   <link
     rel="icon"
     type="image/svg+xml"
@@ -800,6 +894,32 @@
         </div>
       </section>
     </main>
+
+    <section class="seo-faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="faq-heading">常見機率規則說明</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>《奧丁：神叛》鑽石抽卡（造型／坐騎／武器形象／符石）的參考機率是多少？</summary>
+          <p>本模擬器採用公開鑽石召喚基準：白色（一般）約 70.95%、綠色（高級）27.56%、藍色（稀有）1.32%、紫色（英雄）0.16%、金色（傳說）0.01%，11 連抽換算 2,100 鑽石。</p>
+        </details>
+        <details class="faq-item">
+          <summary>4 合 1 卡片合成失敗會退還卡片嗎？保底如何計算？</summary>
+          <p>在《奧丁：神叛》中 4 合 1 合成失敗會消耗全部 4 張素材且不返還同階卡片，僅累積失敗次數；模擬器支援啟用每失敗 15 次必送 1 張目標階級的保底設定。升階參考機率為白→綠 30%、綠→藍 21%、藍→紫 18%、紫→金 16%、金→紅神話 14%。</p>
+        </details>
+        <details class="faq-item">
+          <summary>伊瓦爾第強化石（祝福石）的跳 +2 機率怎麼算？</summary>
+          <p>伊瓦爾第強化石採兩階段獨立判定：先判定該階段基本強化是否成功，成功後再以 20% 機率直接跳升 2 階（+2），否則正常 +1。本模擬器使用動態規劃計算包含跳階的精確理論存活率。</p>
+        </details>
+        <details class="faq-item">
+          <summary>古物抽獎盤為什麼常鎖定第 2 格與多選 Pick？</summary>
+          <p>古物 10 格盤面中第 2 格基礎權重最高（約 35%），第 3、4 格次之（各約 17.5%）。搭配多選策略（如 2-Pick 52.5%、3-Pick 70%）可大幅提高目標欄位命中率。</p>
+        </details>
+      </div>
+    </section>
+
+    <noscript>
+      <p class="noscript-note">本《奧丁：神叛》模擬器需要啟用 JavaScript 才能執行裝備強化、抽卡、卡片合成、古物轉盤與刻印模擬計算。</p>
+    </noscript>
 
     <footer class="site-footer">
       <p>僅供娛樂與機率測試，內部機率與匯率為參考推算值，實際機制請以官方公告為準。</p>

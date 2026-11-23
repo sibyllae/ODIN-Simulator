@@ -29,6 +29,13 @@ const STORAGE_KEY = 'odin-simulator:v3';
 const MAX_HISTORY_ROWS = 100;
 const MAX_TOASTS = 3;
 const VALID_MODES = new Set(['equipment', 'card', 'synthesis', 'artifact', 'engraving']);
+const MODE_TITLES = Object.freeze({
+  equipment: '裝備強化模擬｜奧丁：神叛 模擬器',
+  card: '卡片召喚模擬｜奧丁：神叛 模擬器',
+  synthesis: '4 合 1 卡片合成模擬｜奧丁：神叛 模擬器',
+  artifact: '古物 10 格轉盤模擬｜奧丁：神叛 模擬器',
+  engraving: '刻印與製作大成功模擬｜奧丁：神叛 模擬器',
+});
 
 const numberFmt = new Intl.NumberFormat('zh-TW');
 const percentFmt = new Intl.NumberFormat('zh-TW', {
@@ -926,6 +933,10 @@ class OdinSimulatorApp {
 
     for (const [mode, panel] of Object.entries(this.#els.panels)) {
       panel.hidden = mode !== activeMode;
+    }
+
+    if (MODE_TITLES[activeMode]) {
+      document.title = MODE_TITLES[activeMode];
     }
   }
 
